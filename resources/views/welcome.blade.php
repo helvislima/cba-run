@@ -84,6 +84,9 @@
                         <option value="EX">EX</option>
                     </select>
                 </div>
+                <br>
+                <input type="checkbox" style="margin-right: 10px" required><span style="font-size: 14px; line-height: 0px">Declaro que aderi à Corrida “Por Você” 2024, por livre e espontânea vontade, e estou ciente da necessidade de uma avaliação médica para atestar aptidão à prática de atividade física, assim como sou responsável por minha locomoção e minha integridade física (lesão, ferimento e demais acidentes de qualquer natureza), isentando os organizadores, entidades patrocinadoras e demais membros do evento, de toda e qualquer responsabilidade por acidentes que venham a ocorrer em decorrência das atividades deste evento."</span>
+                <br>
                 <div class="card mt-2 " style="font-size: 13px">
                     <div class="card-body">
 {{--                        <strong>Corrida virtual 5km - Domingo, Dia 28/05/2023</strong><br>--}}
