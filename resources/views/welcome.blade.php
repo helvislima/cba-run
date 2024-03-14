@@ -17,7 +17,7 @@
                 @if(!request()->query('code'))
                 <div class="card mt-2 " style="font-size: 13px">
                     <div class="card-body">
-{{--                        <strong>Corrida virtual 5km - Domingo, Dia 28/05/2023</strong><br>--}}
+                        <strong>Corrida virtual 5km - Domingo, Dia 14/04/2024</strong><br>
                         Seu percurso deverá ser registrado por GPS ou aplicativos de corrida e, ser publicado com print de imagem com o tempo da corrida através do link que enviaremos via e-mail.
                         <br>Boa corrida à todos e todas!
                     </div>
@@ -89,7 +89,7 @@
                 <br>
                 <div class="card mt-2 " style="font-size: 13px">
                     <div class="card-body">
-{{--                        <strong>Corrida virtual 5km - Domingo, Dia 28/05/2023</strong><br>--}}
+                        <strong>Corrida virtual 5km - Domingo, Dia 14/04/2024</strong><br>
                         Seu percurso deverá ser registrado por GPS ou aplicativos de corrida e, ser publicado com print de imagem com o tempo da corrida através do link que enviaremos via e-mail.
                         <br>Boa corrida à todos e todas!
                     </div>
