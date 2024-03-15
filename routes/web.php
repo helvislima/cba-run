@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::post('/enrollment/export', [DashboardController::class, 'enrollmentExport'])->name('enrollment.export');
+Route::post('/ranking/export', [DashboardController::class, 'rankingExport'])->name('ranking.export');
+
 Route::get('/clear', function() {
     Artisan::call('optimize:clear');
     return redirect()->back();

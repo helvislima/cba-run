@@ -32,9 +32,10 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $user = User::where('code', $request->code)->first();
+        $currentRun = Run::orderByDesc('id')->first();
         if($user) {
             $currentRun = Run::orderByDesc('id')->first();
-            $totalRegistered = Enrollment::where('unit_id', $user->unit_id)->count();
+            $totalRegistered = Enrollment::where('unit_id', $user->unit_id)->where('run_id', $currentRun->id)->count();
             $availableVacancie = Unit::where('id', $user->unit_id)->first()->vacancies;
             if(($totalRegistered + 1) <= $availableVacancie) {
                 $hasEnrollment = Enrollment::where('user_code', $user->code)->exists();
@@ -72,6 +73,7 @@ class RegisterController extends Controller
                 return redirect()->back()->withError(['Esta matrícula não existe']);
             }
         }
+        return null;
         return view('register-time', [
             'user' => $user
         ]);

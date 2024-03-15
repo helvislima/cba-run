@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EnrollmentExport;
+use App\Exports\RankingExport;
 use App\Models\Run;
 use App\Models\Unit;
-use App\Models\User;
 use App\Models\Ranking;
-use Illuminate\View\View;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -52,5 +53,14 @@ class DashboardController extends Controller
             'runs' => $runs,
             'runId' => $runId
         ]);
+    }
+
+    public function enrollmentExport()
+    {
+        return Excel::download(new EnrollmentExport, 'matriculas_'.time().'.xlsx');
+    }
+    public function rankingExport()
+    {
+        return Excel::download(new RankingExport, 'ranking_'.time().'.xlsx');
     }
 }

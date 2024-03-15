@@ -5,6 +5,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    <form action="{{ route('ranking.export') }}" method="POST">
+                        @csrf
+                        <button type="submit" style="background: #ccc; padding: 10px">Exportar ranking</button>
+                    </form>
+                    <br>
                     @if(count($runs) > 0)
                         <h5>Histórico de corridas</h5>
                         <form>
@@ -32,28 +37,7 @@
                             </select>
                         </form>
                         <hr>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Posição</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Unidade</th>
-                                    <th scope="col">Tempo</th>
-                                    <th scope="col">Imagem do tempo</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($ranking as $key => $value )
-                                        <tr>
-                                        <th>#{{ $key + 1 }}</th>
-                                            <th>{{ $value->user_name }}</th>
-                                            <th>{{ $value->unit }}</th>
-                                            <th>{{ $value->time }}</th>
-                                            <th><a href="/public/uploads/{{ $value->photo }}" target="_blank"><img style="max-height: 50px; max-width: 50px; object-fit:cover" width="100" src="/public/uploads/{{ $value->photo }}"></a></th>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <x-ranking-table-component :ranking="$ranking" />
                         </div>
                 @endif
             </div>
