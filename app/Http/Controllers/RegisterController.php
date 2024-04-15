@@ -73,7 +73,6 @@ class RegisterController extends Controller
                 return redirect()->back()->withError(['Esta matrícula não existe']);
             }
         }
-        return null;
         return view('register-time', [
             'user' => $user
         ]);
@@ -84,9 +83,9 @@ class RegisterController extends Controller
         $user = User::where('code', $request->code)->first();
         if($user) {
             $currentRun = Run::orderByDesc('id')->first();
-            $hasRanking = Ranking::where('user_id', $user->id)->exists();
+            $hasRanking = Ranking::where('user_name', $user->name)->where('run_id', $currentRun)->exists();
             if($hasRanking) {
-                return redirect()->back()->withError(['Você já cadastrou o seu tempo']);
+                return redirect()->back()->withError(['Você já cadastrou o seu tempo para esta corrida']);
             } else {
                 $photo = $request->photo;
                 $fileName = (round(microtime(true)*1000)).'.'.$photo->extension();
