@@ -1,66 +1,184 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CBA-Run
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Descrição do Projeto
 
-## About Laravel
+O **CBA-Run** é uma aplicação desenvolvida para gerenciar eventos de corrida internos, com foco em inscrições, registro de atividades e rankings baseados em desempenho. A aplicação opera sob o conceito de uma única corrida vigente, permitindo que administradores e colaboradores gerenciem e acompanhem seus dados de forma eficiente.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requisitos do Sistema
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Para rodar a aplicação, é necessário:
+1. Servidor PHP:
+   - PHP 8.1 ou superior.
 
-## Learning Laravel
+2. Extensões PHP:
+   - BCMath
+   - Ctype
+   - Fileinfo
+   - JSON
+   - Mbstring
+   - OpenSSL
+   - PDO
+   - Tokenizer
+   - XML
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. Banco de Dados:
+   - MySQL 8.0+ (recomendado).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. Dependências:
+   - Composer 2.x
+   - Node.js (versão 16 ou superior) para gerenciar assets front-end (Vite).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5. Permissões:
+   - Os diretórios `storage` e `bootstrap/cache` devem ser graváveis pelo servidor.
 
-## Laravel Sponsors
+PARA EXECUTAR
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1. Clone o repositório:
+   git clone https://github.com/helvislima/cba-run.git
+   cd cba-run
 
-### Premium Partners
+2. Instale as dependências:
+   composer install
+   npm install
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+3. Configure o arquivo `.env` com suas credenciais do MySQL:
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=nome_do_banco
+   DB_USERNAME=seu_usuario
+   DB_PASSWORD=sua_senha
 
-## Contributing
+4. Execute as migrations:
+   php artisan migrate
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. Inicie o servidor local:
+   php artisan serve
+   npm run dev
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Funcionalidades da aplicação
 
-## Security Vulnerabilities
+1. Inscrições:
+   - Colaboradores se inscrevem em unidades, limitadas pela quantidade de vagas disponíveis.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. Gestão de Atividades:
+   - Colaboradores registram o tempo percorrido e fazem upload de uma imagem para comprovação.
 
-## License
+3. Ranking:
+   - O sistema organiza os colaboradores em um ranking com base nos tempos registrados.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Administração:
+   - O administrador faz login pela URL `/login`.
+   - Ele não cria novas corridas; o sistema opera com uma única corrida vigente.
+   - É possível exportar os rankings finais em formato CSV/Excel.
+
+5. Identificação Automática:
+   - Colaboradores não precisam de cadastro.
+   - Eles inserem sua matrícula, e o sistema identifica automaticamente seus dados (nome, sobrenome e unidade).
+
+## Modelos
+
+1. User:
+   - Representa os colaboradores.
+   - Identificação automática pelo campo `registration_number` (matrícula).
+
+2. Unit:
+   - Define as unidades com vagas limitadas.
+   - Campos:
+     - `name`: Nome da unidade.
+     - `total_slots`: Total de vagas disponíveis.
+     - `occupied_slots`: Número de vagas já preenchidas.
+
+3. Run:
+   - Representa a corrida vigente.
+   - Campos principais:
+     - `name`: Nome da corrida.
+     - `date`: Data do evento.
+
+4. Enrollment:
+   - Inscrição de colaboradores.
+   - Relaciona usuários às unidades e corridas.
+
+5. Ranking:
+   - Organiza o desempenho dos colaboradores.
+   - Campos principais:
+     - `user_id`: Colaborador.
+     - `run_id`: Corrida vigente.
+     - `time`: Tempo registrado.
+     - `evidence`: Caminho da imagem usada como comprovação.
+
+
+## Controllers
+
+1. DashboardController:
+   - Exibe a página inicial com:
+     - Quantidade de vagas disponíveis nas unidades.
+     - Listagem das unidades com inscrições realizadas.
+     - Opção de exportação de ranking para CSV/Excel.
+
+2. RegisterController:
+   - Gerencia a lógica de identificação do colaborador:
+     - O usuário insere sua matrícula.
+     - O sistema verifica o banco de dados, identifica o colaborador e informa sua unidade.
+    
+## Rotas
+
+1. Inscrições:
+   - POST /enroll: Realiza a inscrição do colaborador em uma unidade.
+
+2. Registro de Atividades:
+   - POST /activity: Registra o tempo e o upload de imagem para comprovação de quilometragem.
+
+3. Ranking:
+   - GET /ranking: Exibe o ranking atual da corrida vigente.
+
+4. Página Inicial:
+   - GET /: Página inicial com as opções de inscrição e listagem de vagas.
+
+
+## Migrations (database)
+
+1. users:
+   - Representa os colaboradores.
+   - Campos:
+     - id: Identificador único do usuário.
+     - name: Nome completo do colaborador.
+     - email: Endereço de e-mail.
+     - password: Senha criptografada.
+     - registration_number: Matrícula do colaborador.
+     - unit_id: Relaciona o colaborador a uma unidade.
+
+2. units:
+   - Define as unidades com vagas disponíveis.
+   - Campos:
+     - id: Identificador único.
+     - name: Nome da unidade.
+     - total_slots: Total de vagas disponíveis.
+     - occupied_slots: Quantidade de vagas ocupadas.
+
+3. runs:
+   - Representa a corrida vigente.
+   - Campos:
+     - id: Identificador único.
+     - name: Nome da corrida.
+     - date: Data do evento.
+
+4. enrollments:
+   - Registra as inscrições dos colaboradores.
+   - Campos:
+     - id: Identificador único.
+     - user_id: Relaciona a inscrição a um colaborador.
+     - unit_id: Relaciona a inscrição a uma unidade.
+     - run_id: Relaciona a inscrição à corrida vigente.
+
+5. rankings:
+   - Define o ranking baseado nos tempos registrados.
+   - Campos:
+     - id: Identificador único.
+     - user_id: Relaciona o ranking a um colaborador.
+     - run_id: Relaciona o ranking à corrida vigente.
+     - time: Tempo registrado pelo colaborador.
+     - evidence: Caminho do arquivo de imagem usado como comprovação.
